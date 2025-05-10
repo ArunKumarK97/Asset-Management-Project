@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 Return Asset
+  form(method='POST', action='/transactions/return')
+    .mb-3
+      label Asset
+      select.form-control(name='asset_id', required)
+        option(value='') Select
+        each asset in assets
+          option(value=asset.id)= `${asset.unique_id} (${asset.make} ${asset.model})`
+
+    .mb-3
+      label Reason
+      input.form-control(type='text', name='return_reason', required)
+      
+    button.btn.btn-primary(type='submit') Return
+    a.btn.btn-secondary(href='/assets') Cancel

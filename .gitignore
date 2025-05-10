@@ -1,0 +1,47 @@
+# Node.js modules
+node_modules/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Dependency directories
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variable file
+.env
+
+# IDE or editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build directories (for projects with build tools)
+dist/
+build/
+coverage/
+
+# Temporary files from some tools
+*.tgz
+
+# Compiled files
+*.out
+*.app
+
+# SQLite databases
+*.sqlite
+*.sqlite3
+
+# JetBrains
+.idea/
+
+# Other
+*.swp

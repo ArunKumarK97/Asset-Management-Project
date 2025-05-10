@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1 Scrap Asset
+  form(method='POST', action='/scrap')
+    .mb-3
+      label Asset
+      select.form-control(name='asset_id', required)
+        option(value='') Select Asset
+        each asset in assets
+          option(value=asset.id)= asset.unique_id + ' (' + asset.make + ' ' + asset.model + ')'
+    .mb-3
+      label Reason for Scrapping
+      textarea.form-control(name='reason', required)
+    button.btn.btn-danger(type='submit') Scrap Asset
+    a.btn.btn-secondary(href='/assets') Cancel

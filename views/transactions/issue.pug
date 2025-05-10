@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1 Issue Asset
+  form(method='POST', action='/transactions/issue')
+    .mb-3
+      label Asset
+      select.form-control(name='asset_id', required)
+        option(value='') Select
+        each asset in assets
+          option(value=asset.id)= `${asset.unique_id} (${asset.make} ${asset.model})`
+
+    .mb-3
+      label Employee
+      select.form-control(name='employee_id', required)
+        option(value='') Select
+        each emp in employees
+          option(value=emp.id)= emp.name
+
+    button.btn.btn-primary(type='submit') Issue
+    a.btn.btn-secondary(href='/assets') Cancel

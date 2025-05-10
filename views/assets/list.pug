@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+  h1 Assets
+  a.btn.btn-success.mb-3(href='/assets/form') Add Asset
+
+  form.mb-3(method='get', action='/assets')
+    .row
+      .col-md-4
+        label Status
+        select.form-control(name='status')
+          option(value='') All
+          option(value='in_stock') In Stock
+          option(value='issued') Issued
+          option(value='scrapped') Scrapped
+      .col-md-4
+        label Category
+        select.form-control(name='category')
+          option(value='') All
+          each cat in categories
+            option(value=cat.id)= cat.name
+      .col-md-4.mt-4
+        button.btn.btn-primary(type='submit') Filter
+
+  table.table.table-bordered.dataTable
+    thead
+      tr
+        th Unique ID
+        th Serial #
+        th Make
+        th Model
+        th Category
+        th Purchase Date
+        th Price
+        th Status
+        th Branch
+        th Actions
+    tbody
+      each asset in assets
+        tr
+          td= asset.unique_id
+          td= asset.serial_number
+          td= asset.make
+          td= asset.model
+          td= asset.category && asset.category.name
+          td= asset.purchase_date
+          td= asset.purchase_price
+          td= asset.status
+          td= asset.branch
+          td
+            a.btn.btn-sm.btn-primary(href=`/assets/form/${asset.id}`) Edit
+            a.btn.btn-sm.btn-danger(href=`/assets/delete/${asset.id}` onclick="return confirm('Delete?')") Delete

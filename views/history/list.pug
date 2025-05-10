@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 Asset History
+  p Select an asset to view its full lifecycle
+  ul.list-group
+    each asset in assets
+      li.list-group-item
+        a(href=`/history/${asset.id}`)= `${asset.unique_id} (${asset.make} ${asset.model})`

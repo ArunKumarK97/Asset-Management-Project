@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h1= employee && employee.id ? 'Edit Employee' : 'Add Employee'
+  form(method='POST', action='/employees/save')
+    input(type='hidden', name='id', value=employee && employee.id)
+    .mb-3
+      label.form-label Name
+      input.form-control(type='text', name='name', required, value=employee && employee.name || '')
+    .mb-3
+      label.form-label Email
+      input.form-control(type='email', name='email', value=employee && employee.email || '')
+    .mb-3
+      label.form-label Phone
+      input.form-control(type='text', name='phone', value=employee && employee.phone || '')
+    .mb-3
+      label.form-label Status
+      select.form-control(name='status')
+        option(value=true selected=employee && employee.status !== false) Active
+        option(value=false selected=employee && employee.status === false) Inactive
+    button.btn.btn-primary(type='submit') Save
+    a.btn.btn-secondary(href='/employees') Cancel

@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h1= category && category.id ? 'Edit Category' : 'Add Category'
+  form(method='POST', action='/categories/save')
+    input(type='hidden', name='id', value=category && category.id)
+    .mb-3
+      label.form-label Name
+      input.form-control(type='text', name='name', required, value=category && category.name)
+    .mb-3
+      label.form-label Description
+      textarea.form-control(name='description')= category && category.description
+    button.btn.btn-primary(type='submit') Save
+    a.btn.btn-secondary(href='/categories') Cancel

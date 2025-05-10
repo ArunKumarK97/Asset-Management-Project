@@ -1,0 +1,50 @@
+extends ../layout
+
+block content
+  h1= asset ? 'Edit Asset' : 'Add Asset'
+  form(method='POST', action='/assets/save')
+    input(type='hidden', name='id', value=(asset ? asset.id : ''))
+    
+    .mb-3
+      label Unique ID
+      input.form-control(type='text', name='unique_id', required, value=(asset ? asset.unique_id : ''))
+      
+    .mb-3
+      label Serial Number
+      input.form-control(type='text', name='serial_number', required, value=(asset ? asset.serial_number : ''))
+      
+    .mb-3
+      label Make
+      input.form-control(type='text', name='make', value=(asset ? asset.make : ''))
+      
+    .mb-3
+      label Model
+      input.form-control(type='text', name='model', value=(asset ? asset.model : ''))
+      
+    .mb-3
+      label Purchase Date
+      input.form-control(type='date', name='purchase_date', value=(asset ? asset.purchase_date : ''))
+      
+    .mb-3
+      label Purchase Price
+      input.form-control(type='number', step='0.01', name='purchase_price', value=(asset ? asset.purchase_price : ''))
+      
+    .mb-3
+      label Branch
+      input.form-control(type='text', name='branch', value=(asset ? asset.branch : ''))
+      
+    .mb-3
+      label Category
+      select.form-control(name='asset_category_id')
+        each cat in categories
+          option(value=cat.id selected=(asset && cat.id == asset.asset_category_id))= cat.name
+
+    .mb-3
+      label Status
+      select.form-control(name='status')
+        option(value='in_stock' selected=(asset && asset.status === 'in_stock')) In Stock
+        option(value='issued' selected=(asset && asset.status === 'issued')) Issued
+        option(value='scrapped' selected=(asset && asset.status === 'scrapped')) Scrapped
+
+    button.btn.btn-primary(type='submit') Save
+    a.btn.btn-secondary(href='/assets') Cancel

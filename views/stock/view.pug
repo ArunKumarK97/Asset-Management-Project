@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1 In-Stock Assets by Branch
+
+  table.table.table-bordered.dataTable
+    thead
+      tr
+        th Branch
+        th Total Assets
+        th Total Value
+    tbody
+      each row in assets
+        tr
+          td= row.branch
+          td= row.total_assets
+          td ₹#{parseFloat(row.total_value).toFixed(2)}
+    tfoot
+      tr
+        td(colspan='2') Grand Total
+        td ₹#{grandTotal.toFixed(2)}

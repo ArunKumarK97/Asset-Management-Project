@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1 Employees
+  a.btn.btn-success.mb-3(href='/employees/form') Add Employee
+  table.table.table-bordered.dataTable
+    thead
+      tr
+        th Name
+        th Email
+        th Phone
+        th Status
+        th Actions
+    tbody
+      each emp in employees
+        tr
+          td= emp.name
+          td= emp.email
+          td= emp.phone
+          td= emp.status ? 'Active' : 'Inactive'
+          td
+            a.btn.btn-sm.btn-primary(href='/employees/form/' + emp.id) Edit
+            a.btn.btn-sm.btn-danger(href='/employees/delete/' + emp.id, onclick="return confirm('Delete?')") Delete

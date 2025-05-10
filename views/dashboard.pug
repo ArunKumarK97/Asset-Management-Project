@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Welcome to Asset Management System
+
+  .row
+    .col-md-4
+      .card.mb-3.shadow
+        .card-body
+          h5.card-title Employees
+          a(href='/employees') View Employees →
+    .col-md-4
+      .card.mb-3.shadow
+        .card-body
+          h5.card-title Assets
+          a(href='/assets') View Assets →
+    .col-md-4
+      .card.mb-3.shadow
+        .card-body
+          h5.card-title Stock View
+          a(href='/stock') View Stock →

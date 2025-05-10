@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+  h1 Asset History
+
+  h3= `${asset.unique_id} (${asset.make} ${asset.model})`
+  p
+    b Serial: 
+    | #{asset.serial_number}
+  p
+    b Purchase Date:
+    | #{asset.purchase_date}
+  p
+    b Price:
+    | ₹#{asset.purchase_price}
+  p
+    b Status:
+    | #{asset.status}
+  p
+    b Branch:
+    | #{asset.branch}
+  p
+    b Category:
+    | #{asset.category && asset.category.name}
+
+  hr
+  h4 Transactions
+  if transactions.length
+    table.table.table-bordered
+      thead
+        tr
+          th Action
+          th Employee
+          th Date
+          th Reason
+      tbody
+        each tx in transactions
+          tr
+            td= tx.action
+            td= tx.employee && tx.employee.name || '-'
+            td= tx.action === 'issue' ? tx.issue_date.toDateString() : tx.return_date.toDateString()
+            td= tx.return_reason || '-'
+  else
+    p.text-muted No transactions found.
+
+  if scrap
+    hr
+    h4 Scrapped
+    p
+      b Scrap Date:
+      | #{scrap.scrap_date.toDateString()}
+    p
+      b Reason:
+      | #{scrap.reason}
